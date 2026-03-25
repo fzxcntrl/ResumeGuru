@@ -1,9 +1,13 @@
 const OpenAI = require('openai');
 const Analysis = require('../models/Analysis');
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize conditionally to prevent server crash on startup
+let openai = null;
+if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here') {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 // @desc    Analyze text (resume or code)
 // @route   POST /api/analyze
@@ -16,8 +20,8 @@ const analyzeText = async (req, res) => {
       return res.status(400).json({ message: 'Please provide text to analyze' });
     }
 
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
-      return res.status(500).json({ message: 'OpenAI API key is missing or invalid' });
+    if (!openai) {
+      return res.status(500).json({ message: 'OpenAI API key is missing or invalid. Please configure OPENAI_API_KEY in the environment variables.' });
     }
 
     const prompt = `You are an expert technical interviewer and hiring manager.
