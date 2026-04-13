@@ -40,18 +40,24 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card glass-panel">
-        <div className="auth-header">
-          <h1>Create an Account</h1>
-          <p>Join us today to get started</p>
+    <div className="min-h-screen flex items-center justify-center p-4 py-12">
+      <div className="w-full max-w-[460px] glass-panel p-8 sm:p-10 relative overflow-hidden">
+        {/* Subtle decorative glow */}
+        <div className="absolute top-[-50px] right-[-50px] w-40 h-40 bg-primary-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-[-50px] left-[-50px] w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="text-center mb-8 relative z-10">
+          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-br from-zinc-100 to-zinc-400 bg-clip-text text-transparent mb-2">
+            Create an Account
+          </h1>
+          <p className="text-zinc-400 text-sm">Join us today to get started with intelligent analysis</p>
         </div>
         
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="error-message mb-6 relative z-10">{error}</div>}
         
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+        <form onSubmit={handleSubmit} className="relative z-10 space-y-4">
+          <div className="space-y-1.5">
+            <label htmlFor="name" className="block text-sm font-medium text-zinc-300">Full Name</label>
             <input 
               type="text" 
               id="name"
@@ -64,8 +70,8 @@ const Signup = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address</label>
+          <div className="space-y-1.5">
+            <label htmlFor="email" className="block text-sm font-medium text-zinc-300">Email Address</label>
             <input 
               type="email" 
               id="email"
@@ -78,8 +84,8 @@ const Signup = () => {
             />
           </div>
           
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="space-y-1.5">
+            <label htmlFor="password" className="block text-sm font-medium text-zinc-300">Password</label>
             <input 
               type="password" 
               id="password"
@@ -92,8 +98,8 @@ const Signup = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+          <div className="space-y-1.5">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-zinc-300">Confirm Password</label>
             <input 
               type="password" 
               id="confirmPassword"
@@ -106,13 +112,18 @@ const Signup = () => {
             />
           </div>
           
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Creating account...' : 'Sign Up'}
+          <button type="submit" className="btn-primary mt-6 !py-3.5" disabled={loading}>
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5 text-zinc-100" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Creating account...
+              </span>
+            ) : 'Sign Up'}
           </button>
         </form>
         
-        <div className="auth-footer">
-          Already have an account? <Link to="/login">Sign in</Link>
+        <div className="mt-8 text-center text-sm text-zinc-400 relative z-10 pb-1">
+          Already have an account? <Link to="/login" className="text-primary-400 hover:text-primary-300 hover:underline font-medium ml-1 transition-colors">Sign in</Link>
         </div>
       </div>
     </div>

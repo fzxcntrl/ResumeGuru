@@ -2,10 +2,11 @@ const OpenAI = require('openai');
 const Analysis = require('../models/Analysis');
 
 // Initialize conditionally to prevent server crash on startup
-let openai = null;
-if (process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'your_openai_api_key_here') {
-  openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+let groq = null;
+if (process.env.GROQ_API_KEY && process.env.GROQ_API_KEY !== 'your_groq_api_key_here') {
+  groq = new OpenAI({
+    baseURL: "https://api.groq.com/openai/v1",
+    apiKey: process.env.GROQ_API_KEY,
   });
 }
 
@@ -20,8 +21,8 @@ const analyzeText = async (req, res) => {
       return res.status(400).json({ message: 'Please provide text to analyze' });
     }
 
-    if (!openai) {
-      return res.status(500).json({ message: 'OpenAI API key is missing or invalid. Please configure OPENAI_API_KEY in the environment variables.' });
+    if (!groq) {
+      return res.status(500).json({ message: 'GROQ API key is missing or invalid. Please configure GROQ_API_KEY in the environment variables.' });
     }
 
     const prompt = `You are an expert technical interviewer and hiring manager.
@@ -40,8 +41,8 @@ const analyzeText = async (req, res) => {
     Text to analyze:
     ${text}`;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
       messages: [
         { role: "system", content: "You are a helpful assistant designed to output strict JSON." },
         { role: "user", content: prompt }
@@ -61,8 +62,8 @@ const analyzeText = async (req, res) => {
 
     res.status(200).json(jsonResult);
   } catch (error) {
-    console.error('OpenAI Analysis Error:', error);
-    res.status(500).json({ message: 'Failed to analyze text. Please try again later.' });
+    console.error('Groq Analysis Error:', error);
+    res.status(500).json({ message: `Failed to analyze text: ${error.message}` });
   }
 };
 

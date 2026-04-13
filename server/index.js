@@ -18,6 +18,7 @@ app.use(cors());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/analyze', analyzeRoutes);
+app.use('/api/rag', require('./routes/rag'));
 
 // Database Connection
 mongoose.connect(process.env.MONGO_URI)
