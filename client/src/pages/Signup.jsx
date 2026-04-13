@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import PageWrapper from '../components/PageWrapper';
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -40,6 +41,7 @@ const Signup = () => {
   };
 
   return (
+    <PageWrapper>
     <div className="min-h-screen flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-[460px] glass-panel p-8 sm:p-10 relative overflow-hidden">
         {/* Subtle decorative glow */}
@@ -127,6 +129,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 

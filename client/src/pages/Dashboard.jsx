@@ -5,6 +5,7 @@ import { LogOut, User, FileText, Bot, Database } from 'lucide-react';
 import AnalyzeSection from '../components/AnalyzeSection';
 import HistorySection from '../components/HistorySection';
 import RagSection from '../components/RagSection';
+import PageWrapper from '../components/PageWrapper';
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -44,16 +45,19 @@ const Dashboard = () => {
 
   if (loading) {
     return (
+      <PageWrapper>
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 border-4 border-zinc-800 border-t-primary-500 rounded-full animate-spin"></div>
           <p className="text-zinc-400 font-medium tracking-wide">Loading dashboard...</p>
         </div>
       </div>
+      </PageWrapper>
     );
   }
 
   return (
+    <PageWrapper>
     <div className="max-w-6xl mx-auto px-4 py-8 w-full">
       <div className="glass-panel px-6 py-4 flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
@@ -152,6 +156,7 @@ const Dashboard = () => {
         </div>
       )}
     </div>
+    </PageWrapper>
   );
 };
 

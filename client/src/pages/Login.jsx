@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import PageWrapper from '../components/PageWrapper';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -31,6 +32,7 @@ const Login = () => {
   };
 
   return (
+    <PageWrapper>
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[420px] glass-panel p-8 sm:p-10 relative overflow-hidden">
         {/* Subtle decorative glow */}
@@ -90,6 +92,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </PageWrapper>
   );
 };
 
