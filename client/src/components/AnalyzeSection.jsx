@@ -35,10 +35,10 @@ const AnalyzeSection = () => {
   return (
     <div className="glass-panel p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-4">
-        <div className="bg-primary-600/20 p-2.5 rounded-xl border border-primary-500/30">
-          <Sparkles className="text-primary-400" size={24} />
+        <div className="bg-red-500/10 p-2.5 rounded-xl border border-red-500/20">
+          <Sparkles className="text-red-400" size={24} />
         </div>
-        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-400">
+        <h2 className="text-xl sm:text-2xl font-semibold text-zinc-100 tracking-tight">
           AI Resume & Code Analyzer
         </h2>
       </div>
@@ -76,21 +76,22 @@ const AnalyzeSection = () => {
 
       {loading && (
         <div className="mt-8 text-center text-zinc-400 animate-pulse bg-zinc-900/50 rounded-xl p-6 border border-zinc-800">
-           <p className="font-medium text-primary-400 mb-2">Processing Document</p>
+           <p className="font-semibold text-red-400 mb-2">Processing Document</p>
            <p className="text-sm">Our AI model is thoroughly evaluating your submission. This may take a few seconds...</p>
         </div>
       )}
 
       {results && !loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 animate-in slide-in-from-bottom-4 duration-500">
-          <div className="glass-panel-hover p-6 bg-zinc-950/40 border-[1px] border-emerald-500/20 group">
-            <h3 className="text-emerald-400 font-semibold text-lg mb-4 flex items-center gap-2">
-              <CheckCircle size={20} className="group-hover:scale-110 transition-transform" /> 
+          <div className="glass-panel-hover p-6 bg-zinc-900 border border-zinc-800 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            <h3 className="text-zinc-100 font-semibold text-lg mb-4 flex items-center gap-2">
+              <CheckCircle size={20} className="text-emerald-400 group-hover:scale-110 transition-transform" /> 
               Strengths
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 relative z-10">
               {results.strengths?.map((item, idx) => (
-                <li key={idx} className="flex gap-3 text-zinc-300 text-sm leading-relaxed">
+                <li key={idx} className="flex gap-3 text-zinc-400 text-sm leading-relaxed">
                   <span className="text-emerald-500/50 mt-1">•</span>
                   {item}
                 </li>
@@ -98,14 +99,15 @@ const AnalyzeSection = () => {
             </ul>
           </div>
           
-          <div className="glass-panel-hover p-6 bg-zinc-950/40 border-[1px] border-red-500/20 group">
-            <h3 className="text-red-400 font-semibold text-lg mb-4 flex items-center gap-2">
-              <AlertTriangle size={20} className="group-hover:scale-110 transition-transform" /> 
+          <div className="glass-panel-hover p-6 bg-zinc-900 border border-zinc-800 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            <h3 className="text-zinc-100 font-semibold text-lg mb-4 flex items-center gap-2">
+              <AlertTriangle size={20} className="text-red-400 group-hover:scale-110 transition-transform" /> 
               Weaknesses
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 relative z-10">
               {results.weaknesses?.map((item, idx) => (
-                <li key={idx} className="flex gap-3 text-zinc-300 text-sm leading-relaxed">
+                <li key={idx} className="flex gap-3 text-zinc-400 text-sm leading-relaxed">
                   <span className="text-red-500/50 mt-1">•</span>
                   {item}
                 </li>
@@ -113,30 +115,32 @@ const AnalyzeSection = () => {
             </ul>
           </div>
           
-          <div className="glass-panel-hover p-6 bg-zinc-950/40 border-[1px] border-blue-500/20 group">
-            <h3 className="text-blue-400 font-semibold text-lg mb-4 flex items-center gap-2">
-              <HelpCircle size={20} className="group-hover:scale-110 transition-transform" /> 
+          <div className="glass-panel-hover p-6 bg-zinc-900 border border-zinc-800 group relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-500/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            <h3 className="text-zinc-100 font-semibold text-lg mb-4 flex items-center gap-2">
+              <HelpCircle size={20} className="text-zinc-400 group-hover:scale-110 transition-transform" /> 
               Interview Questions
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 relative z-10">
               {results.questions?.map((item, idx) => (
-                <li key={idx} className="flex gap-3 text-zinc-300 text-sm leading-relaxed">
-                  <span className="text-blue-500/50 mt-1">•</span>
+                <li key={idx} className="flex gap-3 text-zinc-400 text-sm leading-relaxed">
+                  <span className="text-zinc-500/50 mt-1">•</span>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
           
-          <div className="glass-panel-hover p-6 bg-zinc-950/40 border-[1px] border-amber-500/20 group">
-            <h3 className="text-amber-400 font-semibold text-lg mb-4 flex items-center gap-2">
-              <Lightbulb size={20} className="group-hover:scale-110 transition-transform" /> 
+          <div className="glass-panel-hover p-6 bg-zinc-900 border border-zinc-800 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-zinc-500/5 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+            <h3 className="text-zinc-100 font-semibold text-lg mb-4 flex items-center gap-2">
+              <Lightbulb size={20} className="text-zinc-400 group-hover:scale-110 transition-transform" /> 
               Suggestions
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 relative z-10">
               {results.suggestions?.map((item, idx) => (
-                <li key={idx} className="flex gap-3 text-zinc-300 text-sm leading-relaxed">
-                  <span className="text-amber-500/50 mt-1">•</span>
+                <li key={idx} className="flex gap-3 text-zinc-400 text-sm leading-relaxed">
+                  <span className="text-zinc-500/50 mt-1">•</span>
                   {item}
                 </li>
               ))}

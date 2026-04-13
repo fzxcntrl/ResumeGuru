@@ -42,14 +42,11 @@ const Signup = () => {
 
   return (
     <PageWrapper>
-    <div className="min-h-screen flex items-center justify-center p-4 py-12">
-      <div className="w-full max-w-[460px] glass-panel p-8 sm:p-10 relative overflow-hidden">
-        {/* Subtle decorative glow */}
-        <div className="absolute top-[-50px] right-[-50px] w-40 h-40 bg-primary-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-[-50px] left-[-50px] w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div className="min-h-screen flex items-center justify-center p-6 sm:p-8 py-12">
+      <div className="w-full max-w-[460px] glass-panel p-8 sm:p-10 flex flex-col gap-2 relative overflow-hidden">
 
         <div className="text-center mb-8 relative z-10">
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-br from-zinc-100 to-zinc-400 bg-clip-text text-transparent mb-2">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 mb-2">
             Create an Account
           </h1>
           <p className="text-zinc-400 text-sm">Join us today to get started with intelligent analysis</p>
@@ -125,7 +122,7 @@ const Signup = () => {
         </form>
         
         <div className="mt-8 text-center text-sm text-zinc-400 relative z-10 pb-1">
-          Already have an account? <Link to="/login" className="text-primary-400 hover:text-primary-300 hover:underline font-medium ml-1 transition-colors">Sign in</Link>
+          Already have an account? <Link to="/login" className="text-red-400 hover:text-red-300 hover:underline font-medium ml-1 transition-colors">Sign in</Link>
         </div>
       </div>
     </div>

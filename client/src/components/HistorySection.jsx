@@ -34,7 +34,7 @@ const HistorySection = () => {
   if (loading) {
     return (
       <div className="glass-panel p-8 text-center bg-zinc-900/50">
-        <div className="inline-block w-8 h-8 border-4 border-zinc-800 border-t-primary-500 rounded-full animate-spin mb-4"></div>
+        <div className="inline-block w-8 h-8 border-4 border-zinc-800 border-t-red-500 rounded-full animate-spin mb-4"></div>
         <p className="text-zinc-400 font-medium">Loading your history...</p>
       </div>
     );
@@ -59,24 +59,24 @@ const HistorySection = () => {
   return (
     <div className="glass-panel p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-8">
-        <div className="bg-primary-600/20 p-2.5 rounded-xl border border-primary-500/30">
-          <Clock3 className="text-primary-400" size={24} />
+        <div className="bg-red-500/10 p-2.5 rounded-xl border border-red-500/20">
+          <Clock3 className="text-red-400" size={24} />
         </div>
-        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-zinc-100 to-zinc-400">
+        <h2 className="text-xl sm:text-2xl font-semibold text-zinc-100 tracking-tight">
           Past Analyses
         </h2>
       </div>
       
       <div className="space-y-4">
         {history.map((record) => (
-          <div key={record._id} className="bg-zinc-950/60 border border-zinc-800/80 rounded-2xl overflow-hidden hover:border-primary-500/30 transition-colors duration-300">
+          <div key={record._id} className="bg-zinc-950/60 border border-zinc-800/80 rounded-2xl overflow-hidden hover:border-white/10 hover:shadow-lg transition-all duration-300">
             <div 
               className="p-5 sm:px-6 flex justify-between items-center cursor-pointer hover:bg-zinc-800/30 transition-colors"
               onClick={() => toggleExpand(record._id)}
             >
               <div className="pr-4 overflow-hidden">
                 <p className="font-semibold text-zinc-200 mb-1 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary-500"></span>
+                  <span className="w-2 h-2 rounded-full bg-red-500"></span>
                   {new Date(record.createdAt).toLocaleDateString()} at {new Date(record.createdAt).toLocaleTimeString()}
                 </p>
                 <p className="text-zinc-400 text-sm truncate max-w-xs sm:max-w-md md:max-w-xl lg:max-w-3xl">
@@ -121,13 +121,13 @@ const HistorySection = () => {
                   
                   {/* Questions */}
                   <div>
-                    <h4 className="text-blue-400 font-semibold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
+                    <h4 className="text-zinc-100 font-semibold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
                       Interview Questions
                     </h4>
                     <ul className="space-y-2">
                       {record.aiResponse.questions?.map((q, i) => (
-                        <li key={i} className="flex gap-2 text-zinc-300 text-sm leading-relaxed">
-                          <span className="text-blue-500/50 mt-1 text-xs">●</span> {q}
+                        <li key={i} className="flex gap-2 text-zinc-400 text-sm leading-relaxed">
+                          <span className="text-zinc-600 mt-1 text-xs">●</span> {q}
                         </li>
                       ))}
                     </ul>
@@ -135,13 +135,13 @@ const HistorySection = () => {
                   
                   {/* Suggestions */}
                   <div>
-                    <h4 className="text-amber-400 font-semibold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
+                    <h4 className="text-zinc-100 font-semibold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
                       Suggestions
                     </h4>
                     <ul className="space-y-2">
                       {record.aiResponse.suggestions?.map((s, i) => (
-                        <li key={i} className="flex gap-2 text-zinc-300 text-sm leading-relaxed">
-                          <span className="text-amber-500/50 mt-1 text-xs">●</span> {s}
+                        <li key={i} className="flex gap-2 text-zinc-400 text-sm leading-relaxed">
+                          <span className="text-zinc-600 mt-1 text-xs">●</span> {s}
                         </li>
                       ))}
                     </ul>
